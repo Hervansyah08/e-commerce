@@ -13,6 +13,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use Laravel\Fortify\Contracts\LoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,12 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request)
+            {
+                return redirect()->route('home');
+            }
+        });
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request)
             {
                 return redirect()->route('home');
@@ -52,6 +59,11 @@ class FortifyServiceProvider extends ServiceProvider
         // inisialisasi agar ketika menggunakan get register akan ke view register
         Fortify::registerView(function () {
             return view('auth.register');
+        });
+
+        // inisialisasi agar ketika menggunakan get login akan ke view register
+        Fortify::loginView(function () {
+            return view('auth.login');
         });
     }
 }
