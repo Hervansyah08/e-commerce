@@ -45,6 +45,7 @@
                     @csrf
                     <div class="grid gap-y-4">
                         <!-- Form Group -->
+                        {{-- name --}}
                         <div>
                             <label for="name" class="block text-sm mb-2 dark:text-white">Full Name</label>
                             <div class="relative">
@@ -59,11 +60,14 @@
                                     </svg>
                                 </div>
                             </div>
-                            <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please enter full name</p>
+                            @error('name')
+                                <p class="text-xs text-red-600 mt-2" id="email-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- End Form Group -->
 
                         <!-- Form Group -->
+                        {{-- email --}}
                         <div>
                             <label for="email" class="block text-sm mb-2 dark:text-white">Email address</label>
                             <div class="relative">
@@ -78,12 +82,14 @@
                                     </svg>
                                 </div>
                             </div>
-                            <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid email
-                                address so we can get back to you</p>
+                            @error('email')
+                                <p class=" text-xs text-red-600 mt-2" id="email-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- End Form Group -->
 
                         <!-- Form Group -->
+                        {{-- password --}}
                         <div>
                             <label for="password" class="block text-sm mb-2 dark:text-white">Password</label>
                             <div class="relative">
@@ -98,11 +104,14 @@
                                     </svg>
                                 </div>
                             </div>
-                            <p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required</p>
+                            @error('password')
+                                <p class=" text-xs text-red-600 mt-2" id="password-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- End Form Group -->
 
                         <!-- Form Group -->
+                        {{-- password confirmation --}}
                         <div>
                             <label for="password_confirmation" class="block text-sm mb-2 dark:text-white">Confirm
                                 Password</label>
@@ -118,8 +127,9 @@
                                     </svg>
                                 </div>
                             </div>
-                            <p class="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Password does not match
-                                the password</p>
+                            @error('password_confirmation')
+                                <p class=" text-xs text-red-600 mt-2" id="confirm-password-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- End Form Group -->
 
